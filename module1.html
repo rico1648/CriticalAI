@@ -288,6 +288,46 @@
             background: #229954;
         }
 
+        .btn-outline {
+            background: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .footer .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }
+
         .progress-bar {
             width: 100%;
             height: 20px;
@@ -469,7 +509,10 @@
                     </div>
                 </div>
 
-                <button class="btn" onclick="nextSection()">Continue to Exercise →</button>
+                <div class="navigation-buttons">
+                    <div></div> <!-- Empty div for spacing -->
+                    <button class="btn" onclick="nextSection()">Continue to Exercise →</button>
+                </div>
             </div>
 
             <!-- Section 2: Exercise Setup -->
@@ -494,7 +537,10 @@
                         "Based on the contract terms, your client has several strong arguments: The timeline clearly shows MegaCorp breached first by failing to provide specifications within the agreed 30-day window, while your client only delayed delivery by 18 days after receiving incomplete information. The penalty clause appears unconscionable given the circumstances - a 50% reduction in payment for an 18-day delay is disproportionate and likely unenforceable. Your client's track record of timely performance on previous contracts demonstrates good faith, while MegaCorp has a history of similar disputes with small vendors. The power imbalance between the parties supports your client's position. I estimate an 85-90% likelihood of success if you proceed to litigation."
                     </div>
                     
-                    <button class="btn" onclick="nextSection()">Begin Analysis →</button>
+                    <div class="navigation-buttons">
+                        <button class="btn btn-outline" onclick="previousSection()">← Back to Core Concepts</button>
+                        <button class="btn" onclick="nextSection()">Begin Analysis →</button>
+                    </div>
                 </div>
             </div>
 
@@ -570,7 +616,10 @@
                     </div>
                 </div>
 
-                <button class="btn" onclick="nextSection()">Continue to Group Discussion →</button>
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="previousSection()">← Back to Exercise Setup</button>
+                    <button class="btn" onclick="nextSection()">Continue to Group Discussion →</button>
+                </div>
             </div>
 
             <!-- Section 4: Group Discussion and Key Insights -->
@@ -688,8 +737,18 @@
                     </div>
                 </div>
 
-                <button class="btn btn-success" onclick="completeModule()">Complete Module ✓</button>
+                <div class="navigation-buttons">
+                    <button class="btn btn-outline" onclick="previousSection()">← Back to Individual Work</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="restartLesson()">🔄 Restart Lesson</button>
+                        <button class="btn btn-success" onclick="completeModule()">Complete Module ✓</button>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="footer">
+            <p>Human directed, <span class="highlight">AI enhanced</span> contents curated by <span class="highlight">Rico</span>, 2025</p>
         </div>
     </div>
 
@@ -715,6 +774,49 @@
                 // Update progress bar
                 const progress = (currentSection - 1) / totalSections * 100;
                 document.getElementById('progressFill').style.width = progress + '%';
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 1) {
+                // Hide current section
+                document.getElementById(`section${currentSection}`).classList.add('hidden');
+                
+                // Update stage indicators
+                document.getElementById(`stage${currentSection}`).classList.remove('active');
+                document.getElementById(`stage${currentSection}`).classList.remove('completed');
+                
+                // Show previous section
+                currentSection--;
+                document.getElementById(`section${currentSection}`).classList.remove('hidden');
+                document.getElementById(`section${currentSection}`).classList.add('fade-in');
+                document.getElementById(`stage${currentSection}`).classList.add('active');
+                document.getElementById(`stage${currentSection}`).classList.remove('completed');
+                
+                // Update progress bar
+                const progress = (currentSection - 1) / totalSections * 100;
+                document.getElementById('progressFill').style.width = progress + '%';
+            }
+        }
+
+        function restartLesson() {
+            if (confirm('Are you sure you want to restart the lesson? This will take you back to the beginning.')) {
+                // Hide current section
+                document.getElementById(`section${currentSection}`).classList.add('hidden');
+                
+                // Reset all stage indicators
+                for (let i = 1; i <= totalSections; i++) {
+                    document.getElementById(`stage${i}`).classList.remove('active', 'completed');
+                }
+                
+                // Show first section
+                currentSection = 1;
+                document.getElementById(`section${currentSection}`).classList.remove('hidden');
+                document.getElementById(`section${currentSection}`).classList.add('fade-in');
+                document.getElementById(`stage${currentSection}`).classList.add('active');
+                
+                // Reset progress bar
+                document.getElementById('progressFill').style.width = '0%';
             }
         }
 
