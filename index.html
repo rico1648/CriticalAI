@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical Thinking for Legal AI - Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(10px, -10px) rotate(1deg); }
+            66% { transform: translate(-5px, 5px) rotate(-1deg); }
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .overview-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-left: 5px solid #3498db;
+        }
+
+        .overview-section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .workshop-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #e74c3c;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .info-card h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .learning-objectives {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 15px;
+            padding: 35px;
+            margin: 40px 0;
+        }
+
+        .learning-objectives h2 {
+            color: #27ae60;
+            margin-bottom: 25px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objectives-list li {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .objectives-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .objectives-list li::before {
+            content: counter(objective-counter);
+            counter-increment: objective-counter;
+            background: #27ae60;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            float: left;
+        }
+
+        .objectives-list {
+            counter-reset: objective-counter;
+        }
+
+        .modules-section {
+            margin: 50px 0;
+        }
+
+        .modules-section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .module-card:hover::before {
+            left: 100%;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .module-card.available {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .module-card.coming-soon {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            cursor: not-allowed;
+        }
+
+        .module-number {
+            font-size: 3em;
+            font-weight: bold;
+            opacity: 0.3;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+
+        .module-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .module-card p {
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        .module-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .status-available {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .status-coming-soon {
+            background: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: white;
+            color: #e74c3c;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .navigation {
+            background: #34495e;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .footer .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .workshop-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <div class="nav-logo">🧠 Legal AI Critical Thinking Workshop</div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#objectives">Objectives</a>
+                <a href="#modules">Modules</a>
+                <a href="#start">Get Started</a>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="header-content">
+                <h1>Critical Thinking for Legal AI</h1>
+                <p class="subtitle">Professional Development Workshop</p>
+                <p class="tagline">Maximizing AI Effectiveness Through Systematic Critical Analysis</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="overview-section" id="overview">
+                <h2>🎯 Workshop Overview</h2>
+                <p style="text-align: center; font-size: 1.2em; color: #2c3e50; margin-bottom: 30px;">
+                    Equip legal professionals with critical thinking and Socratic questioning techniques to maximize effectiveness when using generative AI tools in legal practice.
+                </p>
+
+                <div class="workshop-info">
+                    <div class="info-card">
+                        <h3>🎓 Purpose</h3>
+                        <p>Master critical thinking frameworks specifically designed for AI-assisted legal work</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>⏱️ Duration</h3>
+                        <p>2 hours of intensive, interactive training</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🎮 Format</h3>
+                        <p>Hands-on workshop with progressive legal scenarios</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>👥 Audience</h3>
+                        <p>Practicing attorneys, paralegals, and legal professionals</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="learning-objectives" id="objectives">
+                <h2>🎯 Learning Objectives</h2>
+                <p style="text-align: center; margin-bottom: 25px; font-size: 1.1em;">
+                    By the end of this workshop, participants will be able to:
+                </p>
+                <ul class="objectives-list">
+                    <li>Apply the 8 intellectual traits of critical thinking to AI-assisted legal work</li>
+                    <li>Use Socratic questioning techniques to refine AI prompts and validate outputs</li>
+                    <li>Identify and overcome cognitive biases when interpreting AI-generated legal content</li>
+                    <li>Implement a systematic framework for evaluating AI-generated legal research and analysis</li>
+                    <li>Design effective AI prompts using critical thinking principles</li>
+                </ul>
+            </div>
+
+            <div class="modules-section" id="modules">
+                <h2>📚 Workshop Modules</h2>
+                
+                <div class="modules-grid">
+                    <div class="module-card available" onclick="window.open('module1.html', '_blank')">
+                        <div class="module-number">1</div>
+                        <h3>Foundations of Critical Thinking for Legal AI</h3>
+                        <p>Master the 8 intellectual traits and learn to identify bias in AI interactions through hands-on contract dispute analysis.</p>
+                        <span class="module-status status-available">✓ Available Now</span>
+                    </div>
+
+                    <div class="module-card coming-soon">
+                        <div class="module-number">2</div>
+                        <h3>The Socratic Method for AI Interaction</h3>
+                        <p>Learn systematic questioning techniques to refine AI prompts and validate legal outputs through guided inquiry.</p>
+                        <span class="module-status status-coming-soon">🚧 Coming Soon</span>
+                    </div>
+
+                    <div class="module-card coming-soon">
+                        <div class="module-number">3</div>
+                        <h3>Critical Evaluation Framework</h3>
+                        <p>Develop a systematic approach to assess AI-generated legal research, analysis, and recommendations.</p>
+                        <span class="module-status status-coming-soon">🚧 Coming Soon</span>
+                    </div>
+
+                    <div class="module-card coming-soon">
+                        <div class="module-number">4</div>
+                        <h3>Practical Application Workshop</h3>
+                        <p>Apply critical thinking skills to real-world legal scenarios with complex AI-assisted case analysis.</p>
+                        <span class="module-status status-coming-soon">🚧 Coming Soon</span>
+                    </div>
+
+                    <div class="module-card coming-soon">
+                        <div class="module-number">5</div>
+                        <h3>Building Your AI Critical Thinking Toolkit</h3>
+                        <p>Create personalized frameworks and checklists for ongoing critical evaluation of AI in your practice.</p>
+                        <span class="module-status status-coming-soon">🚧 Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section" id="start">
+                <h2>🚀 Ready to Transform Your AI Practice?</h2>
+                <p>Start with Module 1 and begin developing critical thinking skills that will revolutionize how you work with AI in legal practice.</p>
+                <a href="module1.html" class="btn btn-primary">Start Module 1 Now →</a>
+                <a href="#overview" class="btn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Human directed, <span class="highlight">AI enhanced</span> contents curated by <span class="highlight">Rico</span>, 2025</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to coming soon modules
+        document.querySelectorAll('.module-card.coming-soon').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('🚧 This module is coming soon! Start with Module 1 to begin your critical thinking journey.');
+            });
+        });
+
+        // Add loading animation for module 1
+        document.querySelector('.module-card.available').addEventListener('click', function() {
+            if (this.getAttribute('onclick')) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Highlight active section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = ['overview', 'objectives', 'modules', 'start'];
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= window.scrollY + 100) {
+                    current = section;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = 'rgba(255,255,255,0.2)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
