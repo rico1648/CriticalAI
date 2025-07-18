@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical Thinking for Legal AI - Module 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .trait {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .trait:hover {
+            transform: translateY(-5px);
+        }
+
+        .trait h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .exercise-container {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .exercise-header {
+            background: #3498db;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timer {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .ai-output {
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .ai-output::before {
+            content: "🤖 AI Output";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #bdc3c7;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .worksheet {
+            background: #fff9c4;
+            border: 2px dashed #f39c12;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .worksheet h4 {
+            color: #d68910;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .question-group {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .question-group h5 {
+            color: #d68910;
+            margin-bottom: 10px;
+        }
+
+        .question-group ul {
+            margin-left: 20px;
+        }
+
+        .question-group li {
+            margin: 8px 0;
+            color: #2c3e50;
+        }
+
+        .textarea-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .textarea-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .checklist {
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checklist h4 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        .discussion-guide {
+            background: #f0e6ff;
+            border: 2px solid #9b59b6;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .discussion-guide h4 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+
+        .discussion-round {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .discussion-round h5 {
+            color: #8e44ad;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-success {
+            background: #27ae60;
+        }
+
+        .btn-success:hover {
+            background: #229954;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .stage-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .stage {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #bdc3c7;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .stage.active {
+            background: #3498db;
+        }
+
+        .stage.completed {
+            background: #27ae60;
+        }
+
+        .key-insights {
+            background: #e8f8f5;
+            border: 2px solid #16a085;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .key-insights h4 {
+            color: #16a085;
+            margin-bottom: 15px;
+        }
+
+        .insight-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #16a085;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            background: #ecf0f1;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .collapsible:hover {
+            background: #d5dbdb;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.active {
+            max-height: 1000px;
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Critical Thinking for Legal AI</h1>
+            <p>Module 1: Foundations & Bias Detection Exercise</p>
+        </div>
+
+        <div class="content">
+            <!-- Progress Indicator -->
+            <div class="stage-indicator">
+                <div class="stage active" id="stage1">1</div>
+                <div class="stage" id="stage2">2</div>
+                <div class="stage" id="stage3">3</div>
+                <div class="stage" id="stage4">4</div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Section 1: Core Concepts -->
+            <div class="section" id="section1">
+                <h2>🧠 Core Concepts: The 8 Intellectual Traits for Legal AI Users</h2>
+                <p>Understanding these traits is essential for effective and ethical AI use in legal practice.</p>
+                
+                <div class="traits-grid">
+                    <div class="trait">
+                        <h4>Intellectual Humility</h4>
+                        <p>Recognizing AI limitations and your own knowledge gaps</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Intellectual Courage</h4>
+                        <p>Questioning AI outputs even when they seem authoritative</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Intellectual Empathy</h4>
+                        <p>Understanding different perspectives in legal analysis</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Intellectual Autonomy</h4>
+                        <p>Making independent judgments about AI-generated content</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Intellectual Integrity</h4>
+                        <p>Maintaining consistent standards for AI and human-generated work</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Intellectual Perseverance</h4>
+                        <p>Working through complex AI interactions systematically</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Confidence in Reason</h4>
+                        <p>Trusting logical analysis over AI authority</p>
+                    </div>
+                    <div class="trait">
+                        <h4>Fair-mindedness</h4>
+                        <p>Avoiding bias in AI prompt design and output interpretation</p>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="nextSection()">Continue to Exercise →</button>
+            </div>
+
+            <!-- Section 2: Exercise Setup -->
+            <div class="section hidden" id="section2">
+                <h2>🏛️ Exercise 1: Bias Detection in Contract Dispute Analysis</h2>
+                
+                <div class="exercise-container">
+                    <div class="exercise-header">
+                        <h3>Scenario: Contract Dispute Analysis</h3>
+                        <div class="timer">⏱️ 15 minutes total</div>
+                    </div>
+                    
+                    <p><strong>Context:</strong> You're representing a small business in a contract dispute with a large corporation. You decide to use an AI tool to help analyze the case.</p>
+                    
+                    <h4>Your Original Prompt to AI:</h4>
+                    <div class="ai-output" style="background: #fff3cd; border-color: #ffc107;">
+                        "Analyze this contract dispute and tell me why my client should win."
+                    </div>
+                    
+                    <h4>AI's Response:</h4>
+                    <div class="ai-output">
+                        "Based on the contract terms, your client has several strong arguments: The timeline clearly shows MegaCorp breached first by failing to provide specifications within the agreed 30-day window, while your client only delayed delivery by 18 days after receiving incomplete information. The penalty clause appears unconscionable given the circumstances - a 50% reduction in payment for an 18-day delay is disproportionate and likely unenforceable. Your client's track record of timely performance on previous contracts demonstrates good faith, while MegaCorp has a history of similar disputes with small vendors. The power imbalance between the parties supports your client's position. I estimate an 85-90% likelihood of success if you proceed to litigation."
+                    </div>
+                    
+                    <button class="btn" onclick="nextSection()">Begin Analysis →</button>
+                </div>
+            </div>
+
+            <!-- Section 3: Individual Work -->
+            <div class="section hidden" id="section3">
+                <h2>📝 Individual Work: Identify Potential Biases (5 minutes)</h2>
+                
+                <div class="worksheet">
+                    <h4>📋 Your Analysis Worksheet</h4>
+                    
+                    <div class="question-group">
+                        <h5>1. Prompt Analysis (2 minutes)</h5>
+                        <ul>
+                            <li>What assumptions does this prompt make?</li>
+                            <li>How might the wording influence the AI's response?</li>
+                            <li>What alternative ways could we have framed this request?</li>
+                        </ul>
+                        <textarea class="textarea-input" id="promptAnalysis" placeholder="Write your observations about the prompt here..."></textarea>
+                    </div>
+                    
+                    <div class="question-group">
+                        <h5>2. Output Analysis (3 minutes)</h5>
+                        <ul>
+                            <li>What evidence of bias do you see in the AI's response?</li>
+                            <li>What information might be missing or downplayed?</li>
+                            <li>How might this analysis change if we represented the other party?</li>
+                        </ul>
+                        <textarea class="textarea-input" id="outputAnalysis" placeholder="Write your observations about the AI output here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <h4>🔍 Bias Identification Checklist</h4>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="confirmation" />
+                        <label for="confirmation"><strong>Confirmation Bias:</strong> Does the prompt/output seek only information that supports our position?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="anchoring" />
+                        <label for="anchoring"><strong>Anchoring Bias:</strong> Does the analysis over-rely on certain facts while ignoring others?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="selection" />
+                        <label for="selection"><strong>Selection Bias:</strong> What facts or legal theories are emphasized vs. minimized?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="availability" />
+                        <label for="availability"><strong>Availability Bias:</strong> Does the analysis focus on easily recalled examples rather than comprehensive research?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="authority" />
+                        <label for="authority"><strong>Authority Bias:</strong> Does the output present conclusions as more certain than warranted?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="framing" />
+                        <label for="framing"><strong>Framing Bias:</strong> How does the language used influence our perception of the case strength?</label>
+                    </div>
+                </div>
+
+                <div class="worksheet">
+                    <h4>📝 Summary Notes</h4>
+                    <div style="margin: 15px 0;">
+                        <strong>Biases in the Prompt:</strong>
+                        <textarea class="textarea-input" id="promptBiases" placeholder="List the main biases you identified in the prompt..."></textarea>
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <strong>Biases in the AI Output:</strong>
+                        <textarea class="textarea-input" id="outputBiases" placeholder="List the main biases you identified in the AI output..."></textarea>
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <strong>What's Missing from the Analysis:</strong>
+                        <textarea class="textarea-input" id="missingAnalysis" placeholder="What important information or perspectives are missing?"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="nextSection()">Continue to Group Discussion →</button>
+            </div>
+
+            <!-- Section 4: Group Discussion and Key Insights -->
+            <div class="section hidden" id="section4">
+                <h2>💬 Group Discussion & Key Insights</h2>
+                
+                <div class="discussion-guide">
+                    <h4>🗣️ Structured Discussion Guide</h4>
+                    
+                    <div class="discussion-round">
+                        <h5>Round 1: Partner A Shares (2 minutes)</h5>
+                        <p><strong>Partner A:</strong> Present your bias findings</p>
+                        <p><strong>Partner B:</strong> Listen actively, ask clarifying questions</p>
+                        <p><strong>Suggested Questions:</strong></p>
+                        <ul>
+                            <li>"Can you give me an example of that bias in the text?"</li>
+                            <li>"How would that bias affect a real case strategy?"</li>
+                            <li>"What made you notice that particular issue?"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="discussion-round">
+                        <h5>Round 2: Partner B Shares (2 minutes)</h5>
+                        <p><strong>Partner B:</strong> Present your bias findings</p>
+                        <p><strong>Partner A:</strong> Listen actively, ask clarifying questions</p>
+                    </div>
+                    
+                    <div class="discussion-round">
+                        <h5>Round 3: Synthesis (1 minute)</h5>
+                        <p><strong>Together:</strong> Identify the top 3 most problematic biases you found</p>
+                        <div style="margin: 10px 0;">
+                            <strong>Most dangerous bias:</strong> <input type="text" style="width: 300px; padding: 5px; border: 1px solid #ccc; border-radius: 3px;" id="dangerousBias" />
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <strong>Easiest bias to fix:</strong> <input type="text" style="width: 300px; padding: 5px; border: 1px solid #ccc; border-radius: 3px;" id="easiestBias" />
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <strong>Most surprising finding:</strong> <input type="text" style="width: 300px; padding: 5px; border: 1px solid #ccc; border-radius: 3px;" id="surprisingBias" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-insights">
+                    <h4>🔑 Key Learning Points</h4>
+                    
+                    <button class="collapsible" onclick="toggleCollapsible(this)">
+                        📊 Common Biases You Should Have Identified
+                    </button>
+                    <div class="collapsible-content">
+                        <div class="insight-item">
+                            <h5>1. Confirmation Bias (Most Critical)</h5>
+                            <p>The prompt explicitly asks for one-sided analysis. Output provides only arguments favoring the client, missing any discussion of legitimate counterarguments.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h5>2. Anchoring Bias</h5>
+                            <p>Analysis anchors on the 30-day deadline without considering the 18-day delay in providing specifications. Focuses heavily on the "unconscionable" penalty without analyzing industry standards.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h5>3. Availability Bias</h5>
+                            <p>References "David vs. Goliath" narrative (emotionally salient but legally irrelevant). Mentions "similar disputes" without providing specific precedents.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h5>4. Overconfidence Bias</h5>
+                            <p>"85-90% likelihood of success" with no supporting statistical analysis. Presents complex legal issues as having clear outcomes.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h5>5. Framing Bias</h5>
+                            <p>Language choices favor the client ("material breach by Corporation" vs. "delay by Provider"). Timeline presentation emphasizes client's actions while minimizing provider's delays.</p>
+                        </div>
+                    </div>
+
+                    <button class="collapsible" onclick="toggleCollapsible(this)">
+                        ❌ What Should Be Missing from a Balanced Analysis
+                    </button>
+                    <div class="collapsible-content">
+                        <div class="insight-item">
+                            <p><strong>Opposing Counsel's Arguments:</strong> No mention of how MegaCorp would defend the contract terms</p>
+                        </div>
+                        <div class="insight-item">
+                            <p><strong>Legal Precedents:</strong> No citation to cases involving liquidated damages or unconscionability</p>
+                        </div>
+                        <div class="insight-item">
+                            <p><strong>Factual Weaknesses:</strong> Limited discussion of client's role in project delays</p>
+                        </div>
+                        <div class="insight-item">
+                            <p><strong>Risk Assessment:</strong> No analysis of litigation costs vs. settlement value</p>
+                        </div>
+                        <div class="insight-item">
+                            <p><strong>Procedural Considerations:</strong> No mention of jurisdiction, applicable law, or procedural requirements</p>
+                        </div>
+                    </div>
+
+                    <button class="collapsible" onclick="toggleCollapsible(this)">
+                        ✅ Better Prompt Examples
+                    </button>
+                    <div class="collapsible-content">
+                        <div class="insight-item">
+                            <p>"Analyze this contract dispute objectively, identifying the strongest arguments for each party."</p>
+                        </div>
+                        <div class="insight-item">
+                            <p>"What are the key legal issues in this contract dispute, and how might each party approach them?"</p>
+                        </div>
+                        <div class="insight-item">
+                            <p>"Provide a balanced assessment of this contract dispute, including potential weaknesses in our client's position."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-insights" style="border-color: #e74c3c; background: #fdf2f2;">
+                    <h4 style="color: #e74c3c;">🎯 Key Takeaway</h4>
+                    <div class="insight-item">
+                        <p><strong>AI tools amplify our existing biases.</strong> When we ask leading questions, we get leading answers. The key insight is that critical thinking must begin BEFORE we engage with AI, not after.</p>
+                        <p>Notice how the AI gave us exactly what we asked for - it told us why our client should win. But that's not what we actually needed. We needed objective analysis to prepare for the real challenges we'll face.</p>
+                        <p><strong>The good news:</strong> Once we recognize these biases, we can design better prompts and apply critical thinking to evaluate AI outputs more effectively.</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-success" onclick="completeModule()">Complete Module ✓</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 4;
+
+        function nextSection() {
+            // Hide current section
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            
+            // Update stage indicators
+            document.getElementById(`stage${currentSection}`).classList.remove('active');
+            document.getElementById(`stage${currentSection}`).classList.add('completed');
+            
+            // Show next section
+            currentSection++;
+            if (currentSection <= totalSections) {
+                document.getElementById(`section${currentSection}`).classList.remove('hidden');
+                document.getElementById(`section${currentSection}`).classList.add('fade-in');
+                document.getElementById(`stage${currentSection}`).classList.add('active');
+                
+                // Update progress bar
+                const progress = (currentSection - 1) / totalSections * 100;
+                document.getElementById('progressFill').style.width = progress + '%';
+            }
+        }
+
+        function completeModule() {
+            // Mark final stage as completed
+            document.getElementById(`stage${currentSection}`).classList.remove('active');
+            document.getElementById(`stage${currentSection}`).classList.add('completed');
+            
+            // Complete progress bar
+            document.getElementById('progressFill').style.width = '100%';
+            
+            // Show completion message
+            alert('🎉 Congratulations! You have completed Module 1: Foundations of Critical Thinking for Legal AI.\n\nYou have learned to:\n• Identify common biases in AI interactions\n• Design better prompts for objective analysis\n• Apply critical thinking to AI outputs\n• Recognize the importance of intellectual humility when using AI tools\n\nYour insights and notes have been saved for your reference.');
+        }
+
+        function toggleCollapsible(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('active');
+            
+            // Update button text
+            if (content.classList.contains('active')) {
+                element.style.background = '#3498db';
+                element.style.color = 'white';
+            } else {
+                element.style.background = '#ecf0f1';
+                element.style.color = 'black';
+            }
+        }
+
+        // Auto-save functionality for text areas
+        document.querySelectorAll('textarea, input[type="text"]').forEach(element => {
+            element.addEventListener('input', function() {
+                localStorage.setItem(this.id, this.value);
+            });
+            
+            // Load saved content
+            const savedContent = localStorage.getItem(element.id);
+            if (savedContent) {
+                element.value = savedContent;
+            }
+        });
+
+        // Auto-save functionality for checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(element => {
+            element.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+            
+            // Load saved state
+            const savedState = localStorage.getItem(element.id);
+            if (savedState === 'true') {
+                element.checked = true;
+            }
+        });
+
+        // Initialize progress bar
+        document.getElementById('progressFill').style.width = '0%';
+    </script>
+</body>
+</html>
