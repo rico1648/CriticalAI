@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dunning-Kruger Prompt Cheat Codes</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #333; color: #fff; padding: 1rem; text-align: center; }
+    nav { display: flex; justify-content: center; gap: 1rem; background: #222; padding: 0.5rem; }
+    nav button { background: #555; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+    nav button:hover { background: #777; }
+    .section { display: none; padding: 2rem; }
+    .visible { display: block; }
+    .card { background: white; margin-bottom: 1.5rem; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .category { font-weight: bold; color: #444; margin-top: 0.5rem; }
+    .usecases { font-style: italic; color: #666; }
+    .prompt { background: #eee; padding: 0.5rem; margin-top: 0.5rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; }
+    .copy-btn { background: #444; color: white; border: none; padding: 0.2rem 0.6rem; cursor: pointer; }
+    .copy-btn:hover { background: #222; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dunning-Kruger Prompt Cheat Codes</h1>
+    <p>Navigate the confidence curve with targeted prompts</p>
+  </header>
+
+  <nav>
+    <button onclick="showStage('stupidity')">Mount Stupidity</button>
+    <button onclick="showStage('despair')">Valley of Despair</button>
+    <button onclick="showStage('enlightenment')">Slope of Enlightenment</button>
+  </nav>
+
+  <div id="stupidity" class="section visible">
+    <h2>Mount Stupidity</h2>
+    <p>High confidence, low competence. Use these prompts to reveal shallow understanding.</p>
+
+    <div class="card">
+      <h3>Outline Expander</h3>
+      <div class="category">Category: Breadth</div>
+      <p>Reveals whether someone understands the full landscape of a topic.</p>
+      <div class="usecases">Use Cases: Assess general awareness, scoping exercises</div>
+      <div class="prompt">List the major components of [topic] <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">What are the key disciplines involved in [topic]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+
+    <div class="card">
+      <h3>Explainer Ladder</h3>
+      <div class="category">Category: Transferability</div>
+      <p>Tests if someone can explain the topic at different levels of abstraction.</p>
+      <div class="usecases">Use Cases: Teaching, stakeholder alignment</div>
+      <div class="prompt">Explain [concept] to a 10-year-old, then to a CEO, then to an expert. <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div id="despair" class="section">
+    <h2>Valley of Despair</h2>
+    <p>Awareness of complexity sets in. Use these prompts to build depth and self-awareness.</p>
+
+    <div class="card">
+      <h3>Edge Case Trigger</h3>
+      <div class="category">Category: Depth</div>
+      <p>Tests understanding of exceptions and nuance in a system.</p>
+      <div class="usecases">Use Cases: Stress-testing, model evaluation</div>
+      <div class="prompt">What are edge cases or failure scenarios in [topic]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">Where does this approach usually break down? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+
+    <div class="card">
+      <h3>Past Experience Filter</h3>
+      <div class="category">Category: Lived Knowledge</div>
+      <p>Checks for real-world exposure and lessons learned.</p>
+      <div class="usecases">Use Cases: Hiring, retrospectives, mentoring</div>
+      <div class="prompt">What did you get wrong when you first worked on [topic]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">Tell me about a time your approach didn’t work—and why. <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <div id="enlightenment" class="section">
+    <h2>Slope of Enlightenment</h2>
+    <p>Skill grows. Confidence returns with perspective. Use these prompts to build judgment and reliability.</p>
+
+    <div class="card">
+      <h3>Trade-off Navigator</h3>
+      <div class="category">Category: Judgment</div>
+      <p>Encourages critical thinking about competing options.</p>
+      <div class="usecases">Use Cases: Architecture choices, project debates</div>
+      <div class="prompt">What are the trade-offs between [Option A] and [Option B]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">When is [Method A] better than [Method B], and when is it not? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+
+    <div class="card">
+      <h3>Self-Critique Request</h3>
+      <div class="category">Category: Reflection</div>
+      <p>Tests for self-awareness and the ability to spot flaws or biases.</p>
+      <div class="usecases">Use Cases: Prompt tuning, performance reviews</div>
+      <div class="prompt">What would a skeptic say about this response? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">Critique this answer from the perspective of an expert. <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+    </div>
+  </div>
+
+  <script>
+    function showStage(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('visible'));
+      document.getElementById(id).classList.add('visible');
+    }
+
+    function copyPrompt(btn) {
+      const text = btn.parentElement.textContent.replace("Copy", "").trim();
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = "Copy", 1000);
+      });
+    }
+  </script>
+</body>
+</html>
