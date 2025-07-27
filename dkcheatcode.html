@@ -18,6 +18,7 @@
     .prompt { background: #eee; padding: 0.5rem; margin-top: 0.5rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; }
     .copy-btn { background: #444; color: white; border: none; padding: 0.2rem 0.6rem; cursor: pointer; }
     .copy-btn:hover { background: #222; }
+    img { max-width: 100%; height: auto; margin: 1rem 0; }
   </style>
 </head>
 <body>
@@ -27,15 +28,27 @@
   </header>
 
   <nav>
+    <button onclick="showStage('curve')">DK Curve</button>
     <button onclick="showStage('stupidity')">Mount Stupidity</button>
     <button onclick="showStage('despair')">Valley of Despair</button>
     <button onclick="showStage('enlightenment')">Slope of Enlightenment</button>
   </nav>
 
-  <div id="stupidity" class="section visible">
+  <div id="curve" class="section visible">
+    <h2>The Dunning-Kruger Curve</h2>
+    <p>The Dunning-Kruger effect describes how confidence often peaks before competence. This visual helps frame our prompt categories and where they apply in the learning journey.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Dunning%E2%80%93Kruger_Effect_01.svg" alt="Dunning-Kruger Curve" />
+    <ul>
+      <li><strong>Mount Stupidity</strong>: High confidence, little understanding</li>
+      <li><strong>Valley of Despair</strong>: Confidence drops as complexity becomes visible</li>
+      <li><strong>Slope of Enlightenment</strong>: True learning and reliable skill begin to grow</li>
+      <li><strong>Plateau of Sustainability</strong>: Quiet competence, confidence aligned with ability</li>
+    </ul>
+  </div>
+
+  <div id="stupidity" class="section">
     <h2>Mount Stupidity</h2>
     <p>High confidence, low competence. Use these prompts to reveal shallow understanding.</p>
-
     <div class="card">
       <h3>Outline Expander</h3>
       <div class="category">Category: Breadth</div>
@@ -44,7 +57,6 @@
       <div class="prompt">List the major components of [topic] <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
       <div class="prompt">What are the key disciplines involved in [topic]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
     </div>
-
     <div class="card">
       <h3>Explainer Ladder</h3>
       <div class="category">Category: Transferability</div>
@@ -57,7 +69,6 @@
   <div id="despair" class="section">
     <h2>Valley of Despair</h2>
     <p>Awareness of complexity sets in. Use these prompts to build depth and self-awareness.</p>
-
     <div class="card">
       <h3>Edge Case Trigger</h3>
       <div class="category">Category: Depth</div>
@@ -66,7 +77,6 @@
       <div class="prompt">What are edge cases or failure scenarios in [topic]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
       <div class="prompt">Where does this approach usually break down? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
     </div>
-
     <div class="card">
       <h3>Past Experience Filter</h3>
       <div class="category">Category: Lived Knowledge</div>
@@ -80,7 +90,6 @@
   <div id="enlightenment" class="section">
     <h2>Slope of Enlightenment</h2>
     <p>Skill grows. Confidence returns with perspective. Use these prompts to build judgment and reliability.</p>
-
     <div class="card">
       <h3>Trade-off Navigator</h3>
       <div class="category">Category: Judgment</div>
@@ -89,7 +98,6 @@
       <div class="prompt">What are the trade-offs between [Option A] and [Option B]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
       <div class="prompt">When is [Method A] better than [Method B], and when is it not? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
     </div>
-
     <div class="card">
       <h3>Self-Critique Request</h3>
       <div class="category">Category: Reflection</div>
