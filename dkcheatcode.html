@@ -47,11 +47,10 @@
 
   <nav>
     <button onclick="window.open('index.html')">Home</button>    
-    <button onclick="showStage('curve')">DK Curve</button>
+    <button onclick="showStage('curve')">Dunning-Krugger</button>
     <button onclick="showStage('stupidity')">Mount Stupid</button>
     <button onclick="showStage('despair')">Valley of Despair</button>
     <button onclick="showStage('enlightenment')">Slope of Enlightenment</button>
-    <button 
   </nav>
 
   <div id="curve" class="section visible">
@@ -128,6 +127,16 @@
       <div class="prompt">What are the trade-offs between [Option A] and [Option B]? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
       <div class="prompt">When is [Method A] better than [Method B], and when is it not? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
     </div>
+    <div class="card">
+      <h3>Failure Anticipator</h3>
+      <div class="category">Category: Experience</div>
+      <p>Tests for self-awareness and the ability to spot potential failures.</p>
+      <div class="usecases">Use Cases: Risks analysis, design thinking</div>
+      <div class="prompt">Where does this [topic] usually go wrong? What are the common mistakes? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">What early warning signs should we watch for if this fails? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+      <div class="prompt">What’s the most expensive failure mode we’re not considering? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div> 
+      <div class="prompt">If this goes wrong, how fast will we know — and what’s our fallback? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>       
+   </div>    
     <div class="card">
       <h3>Self-Critique Request</h3>
       <div class="category">Category: Reflection</div>
