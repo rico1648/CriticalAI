@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dunning-Kruger Prompt Cheat Codes</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    body { font-family: Calibri, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
     header { background: #333; color: #fff; padding: 1rem; text-align: center; }
+    footer { background: #555; color: #fff; padding: 1rem; text-align: center; }    
     nav { display: flex; justify-content: center; gap: 1rem; background: #222; padding: 0.5rem; }
     nav button { background: #555; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
     nav button:hover { background: #777; }
@@ -37,7 +38,7 @@
   <div id="curve" class="section visible">
     <h2>The Dunning-Kruger Curve</h2>
     <p>The Dunning-Kruger effect describes how confidence often peaks before competence. This visual helps frame our prompt categories and where they apply in the learning journey.</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Dunning%E2%80%93Kruger_Effect_01.svg" alt="Dunning-Kruger Curve" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Dunning%E2%80%93Kruger_Effect_01.svg/1024px-Dunning%E2%80%93Kruger_Effect_01.svg.png" alt="Dunning-Kruger Curve" />
     <ul>
       <li><strong>Mount Stupidity</strong>: High confidence, little understanding</li>
       <li><strong>Valley of Despair</strong>: Confidence drops as complexity becomes visible</li>
@@ -107,7 +108,9 @@
       <div class="prompt">Critique this answer from the perspective of an expert. <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
     </div>
   </div>
-
+<div class="footer">
+  <h4>&copy; Human Directed, AI Enhanced Contents Curated by Rico</h4>
+</div>
   <script>
     function showStage(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('visible'));
