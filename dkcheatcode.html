@@ -7,7 +7,6 @@
   <style>
     body { font-family: Calibri, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
     header { background: #333; color: #fff; padding: 1rem; text-align: center; }
-    footer { background: #555; color: #fff; padding: 0.8rem; text-align: center; align: center; }    
     nav { display: flex; justify-content: center; gap: 1rem; background: #222; padding: 0.5rem; }
     nav button { background: #555; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
     nav button:hover { background: #777; }
@@ -20,6 +19,24 @@
     .copy-btn { background: #444; color: white; border: none; padding: 0.2rem 0.6rem; cursor: pointer; }
     .copy-btn:hover { background: #222; }
     img { max-width: 100%; height: auto; margin: 1rem 0; }
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .footer .highlight {
+            color: #3498db;
+            font-weight: bold;
+        }    
   </style>
 </head>
 <body>
@@ -113,9 +130,9 @@
       <div class="prompt">What are three ways this explanation might be wrong or misleading? <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>       
    </div>
   </div>
-<div class="footer">
-  <h4>&copy; <a href="index.html">Human Directed</a>, AI Enhanced Contents Curated by Rico</h4>
-</div>
+  <div class="footer">
+        <p><a href="index.html">Human directed</a>, <span class="highlight">AI enhanced</span> contents curated by <a href="https://www.linkedin.com/in/ricoho/" target="_blank">Rico Ho</a>. 2025, All rights reserved., 2025</p>
+  </div>
   <script>
     function showStage(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('visible'));
